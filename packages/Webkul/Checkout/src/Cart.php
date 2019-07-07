@@ -858,24 +858,24 @@ class Cart {
                         ]);
                     }
 
-                } else if ($item->product->type == 'simple') {
-                    if ($item->product->sku != $item->sku) {
-                        $item->update(['sku' => $item->product->sku]);
+                } else if ($productFlat->type == 'simple') {
+                    if ($productFlat->sku != $item->sku) {
+                        $item->update(['sku' => $productFlat->sku]);
 
-                    } else if ($item->product->name != $item->name) {
-                        $item->update(['name' => $item->product->name]);
+                    } else if ($productFlat->name != $item->name) {
+                        $item->update(['name' => $productFlat->name]);
 
-                    } else if ($this->price->getMinimalPrice($item->product) != $item->price) {
+                    } else if ($this->price->getMinimalPrice($productFlat) != $item->price) {
                         // $price = (float) $item->custom_price ? $item->custom_price : $item->product->price;
 
-                        if((float)$item->custom_price) {
+                        if (! is_null($item->custom_price)) {
                             $price = $item->custom_price;
                         } else {
-                            $price = $this->price->getMinimalPrice($item->child->product);
+                            $price = $this->price->getMinimalPrice($productFlat);
                         }
 
                         $item->update([
-                            'price' => $price,
+                            'price' => core()->convertPrice($price),
                             'base_price' => $price,
                             'total' => core()->convertPrice($price * ($item->quantity)),
                             'base_total' => $price * ($item->quantity),
