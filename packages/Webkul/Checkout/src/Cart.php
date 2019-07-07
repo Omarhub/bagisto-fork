@@ -873,7 +873,7 @@ class Cart {
                         } else {
                           //  $price = $this->price->getMinimalPrice($item->child->product);
                           //$price = 10.0;
-                          $price = $this->price->getMinimalPrice($product);
+                          $price = $this->price->getMinimalPrice($item->product);
                         }
 
                         $item->update([
