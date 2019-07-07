@@ -457,7 +457,7 @@ return [
             'contact' => 'Contact',
             'shipping' => 'Shipping',
             'payment' => 'Payment',
-            'price' => 'Subtotal',
+            'subtotal' => 'Price',
             'quantity' => 'Quantity',
             'subtotal' => 'Subtotal',
             'shipping-handling' => 'Shipping & Handling',
